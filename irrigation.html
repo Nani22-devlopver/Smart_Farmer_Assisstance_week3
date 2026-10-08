@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Irrigation Tracking</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <h2>🌾 SmartFarm</h2>
+
+        <a href="dashboard.html" data-lang="dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="crops.html" data-lang="cropPlanning">
+            🌱 Crop Planning
+        </a>
+
+        <a class="active"
+           href="irrigation.html"
+           data-lang="irrigation">
+            💧 Irrigation
+        </a>
+
+        <a href="weather.html" data-lang="weather">
+            🌦️ Weather
+        </a>
+
+        <a href="market.html" data-lang="market">
+            💰 Market
+        </a>
+
+        <a href="records.html" data-lang="records">
+            📒 Farm Records
+        </a>
+
+        <button
+            id="logoutBtn"
+            class="logout"
+            data-lang="logout">
+            Logout
+        </button>
+
+
+        <!-- LANGUAGE SWITCHER -->
+
+        <div class="language-box">
+
+            <label for="languageSelect">
+                🌐 <span data-lang="language">Language</span>
+            </label>
+
+            <select id="languageSelect">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="te">
+                    తెలుగు
+                </option>
+
+            </select>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 data-lang="irrigationTitle">
+                    💧 Irrigation Tracking
+                </h1>
+
+                <p data-lang="irrigationDescription">
+                    Monitor water and control irrigation.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= STAT CARDS ================= -->
+
+        <section class="cards">
+
+
+            <!-- SOIL MOISTURE -->
+
+            <div class="stat-card">
+
+                <span>💦</span>
+
+                <div>
+
+                    <b id="moisture">
+                        68%
+                    </b>
+
+                    <p data-lang="soilMoisture">
+                        Soil Moisture
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PUMP STATUS -->
+
+            <div class="stat-card">
+
+                <span>🚿</span>
+
+                <div>
+
+                    <b id="pumpStatus">
+                        OFF
+                    </b>
+
+                    <p data-lang="pumpStatus">
+                        Pump Status
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- LAST IRRIGATION -->
+
+            <div class="stat-card">
+
+                <span>⏱️</span>
+
+                <div>
+
+                    <b>
+                        06:30 AM
+                    </b>
+
+                    <p data-lang="lastIrrigation">
+                        Last Irrigation
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PUMP CONTROL ================= -->
+
+        <div class="panel irrigation-control">
+
+            <h2 data-lang="smartPump">
+                Smart Pump Control
+            </h2>
+
+            <p data-lang="pumpDescription">
+                Turn the demo irrigation pump on or off.
+            </p>
+
+
+            <button
+                id="pumpBtn"
+                class="btn"
+                data-lang="pumpOn">
+
+                Turn Pump ON
+
+            </button>
+
+
+            <div class="progress">
+
+                <div
+                    id="waterProgress"
+                    style="width:68%">
+                </div>
+
+            </div>
+
+
+            <p
+                id="irrigationMessage"
+                data-lang="systemReady">
+
+                System is ready.
+
+            </p>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="irrigation.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farm Records</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <h2>🌾 SmartFarm</h2>
+
+        <a href="dashboard.html">
+            📊 <span data-lang="dashboard">Dashboard</span>
+        </a>
+
+        <a href="crops.html">
+            🌱 <span data-lang="cropPlanning">Crop Planning</span>
+        </a>
+
+        <a href="irrigation.html">
+            💧 <span data-lang="irrigation">Irrigation</span>
+        </a>
+
+        <a href="weather.html">
+            🌦️ <span data-lang="weather">Weather</span>
+        </a>
+
+        <a href="market.html">
+            💰 <span data-lang="market">Market</span>
+        </a>
+
+        <a class="active" href="records.html">
+            📒 <span data-lang="farmRecords">Farm Records</span>
+        </a>
+
+
+        <!-- ================= LANGUAGE ================= -->
+        <div class="language-box">
+
+            <label for="languageSelect">
+                🌐 <span data-lang="language">Language</span>
+            </label>
+
+            <select id="languageSelect">
+
+                <option value="en">English</option>
+
+                <option value="te">తెలుగు</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ================= LOGOUT ================= -->
+        <button id="logoutBtn" class="logout">
+            <span data-lang="logout">Logout</span>
+        </button>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main">
+
+
+        <!-- ================= TOPBAR ================= -->
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    📒 <span data-lang="farmRecords">Farm Records</span>
+                </h1>
+
+                <p data-lang="recordsSubtitle">
+                    Track farm expenses and income.
+                </p>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= ADD RECORD ================= -->
+        <div class="panel">
+
+            <form id="recordForm" class="form-grid">
+
+
+                <!-- Item / Activity -->
+                <input
+                    id="recordItem"
+                    data-placeholder="itemActivity"
+                    placeholder="Item / activity"
+                    required
+                >
+
+
+                <!-- Record Type -->
+                <select id="recordType">
+
+                    <option value="Expense" data-lang="expense">
+                        Expense
+                    </option>
+
+                    <option value="Income" data-lang="income">
+                        Income
+                    </option>
+
+                </select>
+
+
+                <!-- Amount -->
+                <input
+                    id="recordAmount"
+                    type="number"
+                    data-placeholder="amount"
+                    placeholder="Amount ₹"
+                    required
+                >
+
+
+                <!-- Date -->
+                <input
+                    id="recordDate"
+                    type="date"
+                    required
+                >
+
+
+                <!-- Add Button -->
+                <button class="btn" type="submit">
+
+                    <span data-lang="addRecord">
+                        Add Record
+                    </span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- ================= SUMMARY CARDS ================= -->
+        <div class="cards">
+
+
+            <!-- Total Expenses -->
+            <div class="stat-card">
+
+                <span>💸</span>
+
+                <div>
+
+                    <b id="expenseTotal">₹0</b>
+
+                    <p data-lang="totalExpenses">
+                        Total Expenses
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Total Income -->
+            <div class="stat-card">
+
+                <span>💵</span>
+
+                <div>
+
+                    <b id="incomeTotal">₹0</b>
+
+                    <p data-lang="totalIncome">
+                        Total Income
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Balance -->
+            <div class="stat-card">
+
+                <span>📈</span>
+
+                <div>
+
+                    <b id="profitTotal">₹0</b>
+
+                    <p data-lang="balance">
+                        Balance
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= RECORD LIST ================= -->
+        <div class="panel">
+
+            <h2 data-lang="records">
+                Records
+            </h2>
+
+            <div
+                id="recordList"
+                class="table-wrap">
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="records.js"></script>
+
+</body>
+
+</html>

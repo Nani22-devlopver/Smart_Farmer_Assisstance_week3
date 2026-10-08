@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarm Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+<style>
+* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            min-height: 100vh;
+            padding: 30px;
+            color: #23412f;
+            background-image: url(farmer1.png) ;
+             background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: backgroundMove 20s ease-in-out infinite alternate;
+}
+
+    @keyframes backgroundMove {
+        from {
+            background-position: 0% 50%;
+        }
+
+        to {
+          background-position: 100% 50%;
+        }
+        }
+        
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .farmer-ai-section {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(16, 45, 33, 0.15);
+            border: 1px solid #dcebe1;
+        }
+
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e3eee7;
+        }
+
+        .ai-header h1 {
+            color: #164c2f;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .ai-header p {
+            color: #718079;
+            font-size: 14px;
+        }
+
+        .ai-status {
+            background: #e8f7ed;
+            color: #187342;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .ai-status span {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            background: #20b15a;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        /* CHAT */
+
+        .ai-chat-box {
+            height: 450px;
+            overflow-y: auto;
+            padding: 22px;
+            background: linear-gradient(135deg, #f4faf6, #edf7f0);
+            margin-top: 20px;
+            border-radius: 15px;
+            scroll-behavior: smooth;
+        }
+
+        .ai-message {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            animation: messageIn 0.3s ease;
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ai-avatar {
+            min-width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dff2e5;
+            font-size: 21px;
+        }
+
+        .ai-message.bot {
+            justify-content: flex-start;
+        }
+
+        .ai-message.user {
+            justify-content: flex-end;
+        }
+
+        .ai-message.user .ai-avatar {
+            order: 2;
+            background: #cdebd7;
+        }
+
+        .ai-bubble {
+            max-width: 75%;
+            padding: 14px 17px;
+            line-height: 1.6;
+            font-size: 14px;
+            border-radius: 16px;
+        }
+
+        .ai-message.bot .ai-bubble {
+            background: white;
+            color: #263a30;
+            border-radius: 5px 16px 16px 16px;
+            border: 1px solid #dfeae3;
+        }
+
+        .ai-message.user .ai-bubble {
+            background: linear-gradient(135deg, #23864e, #2e8b57);
+            color: white;
+            border-radius: 16px 5px 16px 16px;
+        }
+
+        .ai-bubble strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        /* QUICK QUESTIONS */
+
+        .ai-quick-actions {
+            display: flex;
+            gap: 9px;
+            overflow-x: auto;
+            padding: 14px 0;
+        }
+
+        .ai-question {
+            border: 1px solid #b9ddc5;
+            background: #f0f8f3;
+            color: #17643c;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: bold;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+
+        .ai-question:hover {
+            background: #d8efdf;
+            transform: translateY(-2px);
+        }
+
+        /* INPUT */
+
+        .ai-input-area {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        #aiQuestion {
+            flex: 1;
+            resize: none;
+            min-height: 55px;
+            max-height: 130px;
+            padding: 15px;
+            border: 1px solid #ccdcd2;
+            border-radius: 14px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #aiQuestion:focus {
+            border-color: #2e8b57;
+            box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.10);
+        }
+
+        .ai-send-button {
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #1b633b, #2e8b57);
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .ai-send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(46, 139, 87, 0.25);
+        }
+
+        .ai-send-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .ai-note {
+            margin-top: 10px;
+            font-size: 11px;
+            color: #78857e;
+            text-align: center;
+        }
+
+        /* TYPING */
+
+        .ai-typing {
+            display: flex;
+            gap: 5px;
+        }
+
+        .ai-typing span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #619078;
+            animation: typing 1s infinite;
+        }
+
+        .ai-typing span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .ai-typing span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media(max-width:700px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .ai-header {
+                display: block;
+            }
+
+            .ai-status {
+                display: inline-block;
+                margin-top: 12px;
+            }
+
+            .ai-chat-box {
+                height: 400px;
+                padding: 14px;
+            }
+
+            .ai-bubble {
+                max-width: 85%;
+            }
+        }
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <h2>🌾 SmartFarm</h2>
+
+        <a class="active" href="dashboard.html" data-lang="dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="crops.html" data-lang="cropPlanning">
+            🌱 Crop Planning
+        </a>
+
+        <a href="irrigation.html" data-lang="irrigation">
+            💧 Irrigation
+        </a>
+
+        <a href="weather.html" data-lang="weather">
+            🌦️ Weather
+        </a>
+
+        <a href="market.html" data-lang="market">
+            💰 Market
+        </a>
+
+        <a href="records.html" data-lang="records">
+            📒 Farm Records
+        </a>
+
+        <button id="logoutBtn" class="logout" data-lang="logout">
+            Logout
+        </button>
+
+        <!-- LANGUAGE SWITCHER -->
+        <div class="language-box">
+
+            <label for="languageSelect">
+                🌐 <span data-lang="language">Language</span>
+            </label>
+
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="te">తెలుగు</option>
+            </select>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+
+                <h1 data-lang="farmerDashboard">
+                    Farmer Dashboard
+                </h1>
+
+                <p id="welcome" data-lang="welcome">
+                    Welcome back!
+                </p>
+
+            </div>
+
+            <div class="date" id="today"></div>
+
+        </header>
+
+
+        <!-- ================= STAT CARDS ================= -->
+        <section class="cards">
+
+            <div class="stat-card">
+
+                <span>🌱</span>
+
+                <div>
+                    <b id="cropCount">0</b>
+
+                    <p data-lang="activeCrops">
+                        Active Crops
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>💧</span>
+
+                <div>
+                    <b id="waterValue">68%</b>
+
+                    <p data-lang="soilMoisture">
+                        Soil Moisture
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>🌦️</span>
+
+                <div>
+
+                    <b>29°C</b>
+
+                    <p data-lang="today">
+                        Today
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>💰</span>
+
+                <div>
+
+                    <b>₹2,450</b>
+
+                    <p data-lang="marketAverage">
+                        Market Avg.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TWO COLUMN SECTION ================= -->
+        <section class="grid-2">
+
+
+            <!-- CROP OVERVIEW -->
+            <div class="panel">
+
+                <h2 data-lang="cropOverview">
+                    🌾 Crop Overview
+                </h2>
+
+                <div id="cropOverview"></div>
+
+            </div>
+
+
+            <!-- SMART ALERTS -->
+            <div class="panel">
+
+                <h2 data-lang="smartAlerts">
+                    🔔 Smart Alerts
+                </h2>
+
+
+                <div class="alert success"
+                     data-lang="soilAlert">
+
+                    ✓ Soil moisture is sufficient.
+
+                </div>
+
+
+                <div class="alert warning"
+                     data-lang="rainAlert">
+
+                    ⚠ Rain may occur tomorrow. Review irrigation.
+
+                </div>
+
+
+                <div class="alert info"
+                     data-lang="marketAlert">
+
+                    ℹ Tomato market price updated today.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+        <section class="panel">
+
+            <h2 data-lang="quickActions">
+                ⚡ Quick Actions
+            </h2>
+
+
+            <div class="quick-actions">
+
+                <a href="crops.html"
+                   data-lang="addCrop">
+                    + Add Crop
+                </a>
+
+
+                <a href="irrigation.html"
+                   data-lang="checkIrrigation">
+                    💧 Check Irrigation
+                </a>
+
+
+                <a href="market.html"
+                   data-lang="marketPrices">
+                    ₹ Market Prices
+                </a>
+
+
+                <a href="records.html"
+                   data-lang="addRecord">
+                    📒 Add Record
+                </a>
+
+            </div>
+
+        </section>
+
+    
+
+        <!-- SmartFarm AI Chatbot
+        <div class="container">
+
+        <section class="farmer-ai-section">
+
+            <div class="ai-header">
+
+                <div>
+                    <h1>🤖 SmartFarm AI</h1>
+
+                    <p>
+                        Ask questions about crops, irrigation,
+                        pests, fertilizers and farming.
+                    </p>
+                </div>
+
+                <div class="ai-status">
+                    <span></span>
+                    Gemini AI
+                </div>
+
+            </div> -->
+
+
+            <!-- CHAT AREA -->
+
+            <!-- <div class="ai-chat-box" id="aiChatBox">
+
+                <div class="ai-message bot">
+
+                    <div class="ai-avatar">
+                        🤖
+                    </div>
+
+                    <div class="ai-bubble">
+
+                        <strong>
+                            AI Farmer Assistant
+                        </strong>
+
+                        👋 Hello Farmer!
+
+                        <br><br>
+
+                        I can help you with:
+
+                        <br><br>
+
+                        🌱 Crop planning
+                        <br>
+                        💧 Irrigation
+                        <br>
+                        🌦️ Weather
+                        <br>
+                        🐛 Pest control
+                        <br>
+                        🌿 Fertilizers
+                        <br>
+                        🌾 Crop diseases
+
+                        <br><br>
+
+                        Ask me your farming question.
+
+                    </div>
+
+                </div>
+
+            </div>
+ -->
+
+            <!-- QUICK QUESTIONS -->
+
+            <!-- <div class="ai-quick-actions">
+
+                <button
+                    class="ai-question"
+                    data-question="How can I improve the growth of my tomato crop?">
+
+                    🌱 Crop Growth
+
+                </button>
+
+
+                <button
+                    class="ai-question"
+                    data-question="How often should I irrigate my crops?">
+
+                    💧 Irrigation
+
+                </button>
+
+
+                <button
+                    class="ai-question"
+                    data-question="What should I do if my crop has pests?">
+
+                    🐛 Pest Control
+
+                </button>
+
+
+                <button
+                    class="ai-question"
+                    data-question="Which fertilizer is suitable for crops?">
+
+                    🌿 Fertilizer
+
+                </button>
+
+            </div>
+ -->
+
+            <!-- INPUT -->
+
+            <!-- <div class="ai-input-area">
+
+                <textarea
+                    id="aiQuestion"
+                    placeholder="Ask your farming question..."
+                    rows="1"></textarea>
+
+                <button
+                    id="aiSendButton"
+                    class="ai-send-button">
+
+                    ➤
+
+                </button>
+
+            </div>
+
+
+            <div class="ai-note">
+
+                ⚠️ AI suggestions are general agricultural
+                information. Consult an agricultural expert
+                for serious crop disease or chemical decisions.
+
+            </div> -->
+
+<!--             
+
+        </section>
+
+    </div> -->
+
+    <!-- SmartFarm Mini AI Chatbot -->
+
+<div class="mini-chatbot">
+
+    <!-- Floating Chat Button -->
+    <button id="chatToggle" class="chat-toggle">
+        🤖
+    </button>
+
+    <!-- Mini Chat Window -->
+    <section id="chatWindow" class="chat-window">
+
+        <!-- Header -->
+        <div class="chat-header">
+
+            <div>
+                <h3>🤖 SmartFarm AI</h3>
+                <span>
+                    <span class="online-dot"></span>
+                    Gemini AI
+                </span>
+            </div>
+
+            <button id="closeChat" class="close-chat">
+                ×
+            </button>
+
+        </div>
+
+        <!-- Messages -->
+        <div id="chatMessages" class="chat-messages">
+
+            <div class="bot-message">
+                👋 Hello Farmer!
+                <br>
+                Ask me about crops, irrigation,
+                pests, fertilizers and farming.
+            </div>
+
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Ask your farming question..."
+            >
+
+            <button id="sendMessage">
+                ➤
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+    </main>
+
+</div>
+
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>

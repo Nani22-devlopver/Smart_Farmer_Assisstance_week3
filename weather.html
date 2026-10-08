@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Weather Information</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <h2>🌾 SmartFarm</h2>
+
+        <a href="dashboard.html" data-lang="dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="crops.html" data-lang="cropPlanning">
+            🌱 Crop Planning
+        </a>
+
+        <a href="irrigation.html" data-lang="irrigation">
+            💧 Irrigation
+        </a>
+
+        <a class="active"
+           href="weather.html"
+           data-lang="weather">
+            🌦️ Weather
+        </a>
+
+        <a href="market.html" data-lang="market">
+            💰 Market
+        </a>
+
+        <a href="records.html" data-lang="records">
+            📒 Farm Records
+        </a>
+
+        <button
+            id="logoutBtn"
+            class="logout"
+            data-lang="logout">
+            Logout
+        </button>
+
+
+        <!-- ================= LANGUAGE ================= -->
+
+        <div class="language-box">
+
+            <label for="languageSelect">
+                🌐 <span data-lang="language">Language</span>
+            </label>
+
+            <select id="languageSelect">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="te">
+                    తెలుగు
+                </option>
+
+            </select>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 data-lang="weatherTitle">
+                    🌦️ Live Weather Information
+                </h1>
+
+                <p data-lang="weatherDescription">
+                    Real-time weather conditions for your farm.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= LOCATION SEARCH ================= -->
+
+        <div class="panel">
+
+            <h2 data-lang="selectLocation">
+                📍 Select Location
+            </h2>
+
+            <div class="location-box">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    data-placeholder="cityPlaceholder"
+                    placeholder="Enter city name"
+                    value="Paderu"
+                >
+
+                <button
+                    id="searchWeather"
+                    class="weather-btn"
+                    data-lang="getWeather">
+                    🔍 Get Weather
+                </button>
+
+            </div>
+
+            <p id="weatherStatus">
+                Loading live weather...
+            </p>
+
+        </div>
+
+
+        <!-- ================= CURRENT WEATHER ================= -->
+
+        <div
+            class="weather-hero"
+            id="weatherHero">
+
+            <div>
+
+                <span
+                    class="big-weather"
+                    id="weatherIcon">
+                    ☀️
+                </span>
+
+                <h2 id="temperature">
+                    --°C
+                </h2>
+
+                <p id="description">
+                    Loading...
+                </p>
+
+                <p id="locationName">
+                    📍 Loading location...
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    💧 <span data-lang="humidity">
+                        Humidity
+                    </span>:
+
+                    <strong id="humidity">
+                        --%
+                    </strong>
+                </p>
+
+
+                <p>
+                    🌬️ <span data-lang="wind">
+                        Wind
+                    </span>:
+
+                    <strong id="wind">
+                        -- km/h
+                    </strong>
+                </p>
+
+
+                <p>
+                    🌧️ <span data-lang="rain">
+                        Rain
+                    </span>:
+
+                    <strong id="rain">
+                        --
+                    </strong>
+                </p>
+
+
+                <p>
+                    🌡️ <span data-lang="feelsLike">
+                        Feels Like
+                    </span>:
+
+                    <strong id="feelsLike">
+                        --°C
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= WEATHER DETAILS ================= -->
+
+        <div class="cards">
+
+
+            <div class="stat-card">
+
+                <span>🌡️</span>
+
+                <div>
+
+                    <b id="minTemp">
+                        --°C
+                    </b>
+
+                    <p data-lang="minimum">
+                        Minimum
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>🔥</span>
+
+                <div>
+
+                    <b id="maxTemp">
+                        --°C
+                    </b>
+
+                    <p data-lang="maximum">
+                        Maximum
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>☁️</span>
+
+                <div>
+
+                    <b id="clouds">
+                        --%
+                    </b>
+
+                    <p data-lang="cloudiness">
+                        Cloudiness
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>👁️</span>
+
+                <div>
+
+                    <b id="visibility">
+                        -- km
+                    </b>
+
+                    <p data-lang="visibility">
+                        Visibility
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FORECAST ================= -->
+
+        <div class="panel">
+
+            <h2 data-lang="fiveDayForecast">
+                📅 5-Day Weather Forecast
+            </h2>
+
+            <div
+                id="forecast"
+                class="forecast">
+            </div>
+
+        </div>
+
+
+        <!-- ================= FARMING TIP ================= -->
+
+        <div
+            class="alert warning"
+            id="farmingTip">
+
+            ⚠ Checking weather conditions...
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="weather.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crop Planning</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <h2>🌾 SmartFarm</h2>
+
+        <a href="dashboard.html" data-lang="dashboard">
+            📊 Dashboard
+        </a>
+
+        <a class="active" href="crops.html" data-lang="cropPlanning">
+            🌱 Crop Planning
+        </a>
+
+        <a href="irrigation.html" data-lang="irrigation">
+            💧 Irrigation
+        </a>
+
+        <a href="weather.html" data-lang="weather">
+            🌦️ Weather
+        </a>
+
+        <a href="market.html" data-lang="market">
+            💰 Market
+        </a>
+
+        <a href="records.html" data-lang="records">
+            📒 Farm Records
+        </a>
+
+        <button id="logoutBtn"
+                class="logout"
+                data-lang="logout">
+            Logout
+        </button>
+
+
+        <!-- LANGUAGE -->
+
+        <div class="language-box">
+
+            <label for="languageSelect">
+                🌐 <span data-lang="language">Language</span>
+            </label>
+
+            <select id="languageSelect">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="te">
+                    తెలుగు
+                </option>
+
+            </select>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 data-lang="cropPlanningTitle">
+                    🌱 Crop Planning
+                </h1>
+
+                <p data-lang="cropPlanningDescription">
+                    Plan and monitor your crops.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= ADD CROP ================= -->
+
+        <div class="panel">
+
+            <form id="cropForm" class="form-grid">
+
+                <input
+                    id="cropName"
+                    data-placeholder="cropName"
+                    placeholder="Crop name"
+                    required
+                >
+
+
+                <input
+                    id="area"
+                    type="number"
+                    data-placeholder="area"
+                    placeholder="Area (acres)"
+                    required
+                >
+
+
+                <input
+                    id="sowingDate"
+                    type="date"
+                    required
+                >
+
+
+                <select id="stage">
+
+                    <option value="Planned"
+                            data-lang="planned">
+                        Planned
+                    </option>
+
+                    <option value="Growing"
+                            data-lang="growing">
+                        Growing
+                    </option>
+
+                    <option value="Flowering"
+                            data-lang="flowering">
+                        Flowering
+                    </option>
+
+                    <option value="Ready to Harvest"
+                            data-lang="readyHarvest">
+                        Ready to Harvest
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="btn"
+                    type="submit"
+                    data-lang="addCrop">
+                    Add Crop
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ================= CROP LIST ================= -->
+
+        <div class="panel">
+
+            <h2 data-lang="myCrops">
+                My Crops
+            </h2>
+
+            <div
+                id="cropList"
+                class="table-wrap">
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="crops.js"></script>
+
+</body>
+</html>

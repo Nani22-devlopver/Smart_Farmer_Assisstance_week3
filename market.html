@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Market Information</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <h2>🌾 SmartFarm</h2>
+
+        <a href="dashboard.html">
+            📊 <span data-lang="dashboard">Dashboard</span>
+        </a>
+
+        <a href="crops.html">
+            🌱 <span data-lang="cropPlanning">Crop Planning</span>
+        </a>
+
+        <a href="irrigation.html">
+            💧 <span data-lang="irrigation">Irrigation</span>
+        </a>
+
+        <a href="weather.html">
+            🌦️ <span data-lang="weather">Weather</span>
+        </a>
+
+        <a class="active" href="market.html">
+            💰 <span data-lang="market">Market</span>
+        </a>
+
+        <a href="records.html">
+            📒 <span data-lang="farmRecords">Farm Records</span>
+        </a>
+
+
+        <!-- LANGUAGE -->
+        <div class="language-box">
+
+            <label for="languageSelect">
+                🌐 <span data-lang="language">Language</span>
+            </label>
+
+            <select id="languageSelect">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="te">
+                    తెలుగు
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- LOGOUT -->
+        <button id="logoutBtn" class="logout">
+
+            🚪 <span data-lang="logout">
+                Logout
+            </span>
+
+        </button>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+
+                <h1 data-lang="marketTitle">
+                    💰 Andhra Pradesh Mandi Prices
+                </h1>
+
+                <p data-lang="marketDescription">
+                    View the latest daily agricultural market prices.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= FILTER PANEL ================= -->
+        <section class="panel">
+
+            <h2 data-lang="selectMarket">
+                📍 Select Market
+            </h2>
+
+
+            <div class="market-filters">
+
+
+                <!-- DISTRICT -->
+                <div class="filter-group">
+
+                    <label for="districtSelect"
+                           data-lang="district">
+                        District
+                    </label>
+
+                    <select id="districtSelect">
+
+                        <option value="">
+                            Select District
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MANDI -->
+                <div class="filter-group">
+
+                    <label for="marketSelect"
+                           data-lang="mandi">
+                        Mandi / Market
+                    </label>
+
+                    <select id="marketSelect"
+                           disabled>
+
+                        <option value="">
+                            Select Mandi
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CROP -->
+                <div class="filter-group">
+
+                    <label for="cropSelect"
+                           data-lang="crop">
+                        Crop
+                    </label>
+
+                    <select id="cropSelect"
+                           disabled>
+
+                        <option value="">
+                            Select Crop
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+            <div class="market-search">
+
+                <input
+                    type="text"
+                    id="marketSearch"
+                    data-placeholder="searchCrop"
+                    placeholder="Search crop or mandi..."
+                >
+
+                <button
+                    id="refreshMarket"
+                    class="btn">
+
+                    🔄
+                    <span data-lang="refresh">
+                        Refresh Prices
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- STATUS -->
+            <div
+                id="marketStatus"
+                class="market-status">
+
+                Loading Andhra Pradesh mandi prices...
+
+            </div>
+
+
+            <!-- LAST UPDATED -->
+            <p
+                id="lastUpdated"
+                class="last-updated">
+            </p>
+
+
+        </section>
+
+
+
+        <!-- ================= PRICE RESULT ================= -->
+        <section class="panel">
+
+            <div class="section-heading">
+
+                <h2 data-lang="priceInformation">
+                    💰 Price Information
+                </h2>
+
+                <span
+                    id="recordCount"
+                    class="record-count">
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                id="marketTable"
+                class="table-wrap">
+
+                <div class="loading">
+                    🌾 Loading market prices...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="market.js"></script>
+
+</body>
+</html>
